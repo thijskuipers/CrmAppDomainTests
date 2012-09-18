@@ -8,6 +8,6 @@ namespace AppDomainTest.Crm4.Interfaces
 {
     public interface IService
     {
-        string Setup();
+        void Setup();
     }
 }

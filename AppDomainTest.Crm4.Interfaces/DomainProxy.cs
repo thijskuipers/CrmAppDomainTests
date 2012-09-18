@@ -64,6 +64,5 @@ namespace AppDomainTest.Crm4.Interfaces
             Console.WriteLine("AppDomain.Name: {0}", AppDomain.CurrentDomain.FriendlyName);
             Console.WriteLine(args.LoadedAssembly.FullName);
         }
-
     }
 }

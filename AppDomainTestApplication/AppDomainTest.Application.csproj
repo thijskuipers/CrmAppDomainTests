@@ -59,7 +59,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>Robocopy "$(SolutionDir)Crm4Service\bin\$(ConfigurationName)" "$(TargetDir)\" *.dll *.pdb
+    <PostBuildEvent>Robocopy "$(SolutionDir)Crm4Service\bin\$(ConfigurationName)" "$(TargetDir)Crm4" *.dll *.pdb
 if errorlevel 4 goto BuildEventFailed
 if errorlevel 0 goto end
 :BuildEventFailed echo FILECOPY for $(ProjectName) FAILED
