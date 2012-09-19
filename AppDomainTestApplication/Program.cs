@@ -7,22 +7,18 @@ namespace AppDomainTest.Application
 {
     class Program
     {
-        [LoaderOptimization(LoaderOptimization.MultiDomain)]
+        [LoaderOptimization(LoaderOptimization.MultiDomainHost)]
         static void Main(string[] args)
         {
             Console.WriteLine("Application Start");
 
             Console.WriteLine("Main AppDomain: {0}", AppDomain.CurrentDomain.FriendlyName);
 
-            AppDomain.CurrentDomain.SetupInformation.PrivateBinPath = "Crm4";
-
             AppDomainSetup adSetup = new AppDomainSetup();
             
-            Console.WriteLine();
             PrintAssemblies(AppDomain.CurrentDomain);
 
             adSetup.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Crm4");
-            adSetup.PrivateBinPath = "Crm4";
 
             AppDomain crm4AppDomain = AppDomain.CreateDomain("Crm4Service", null, adSetup);
 
