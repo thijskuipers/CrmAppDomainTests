@@ -19,6 +19,7 @@ namespace AppDomainTest.Application
             PrintAssemblies(AppDomain.CurrentDomain);
 
             adSetup.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Crm4");
+            adSetup.ConfigurationFile = Path.Combine(adSetup.ApplicationBase, "AppDomainTest.Crm4.Service.dll.config");
 
             AppDomain crm4AppDomain = AppDomain.CreateDomain("Crm4Service", null, adSetup);
 

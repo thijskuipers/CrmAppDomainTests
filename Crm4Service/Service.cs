@@ -20,7 +20,6 @@ namespace AppDomainTest.Crm4.Service
         public void Setup()
         {
             Console.WriteLine("Crm4.Service AppDomain: {0}", AppDomain.CurrentDomain.FriendlyName);
-            //AppDomain.CurrentDomain.Load("AppDomainTest.Crm4.Service");
             PrintAssemblies(AppDomain.CurrentDomain);
         }
 
