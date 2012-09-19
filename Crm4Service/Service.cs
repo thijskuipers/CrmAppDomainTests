@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using AppDomainTest.Crm4.Interfaces;
 
 namespace AppDomainTest.Crm4.Service
@@ -20,6 +21,7 @@ namespace AppDomainTest.Crm4.Service
         public void Setup()
         {
             Console.WriteLine("Crm4.Service AppDomain: {0}", AppDomain.CurrentDomain.FriendlyName);
+            Console.WriteLine(ConfigurationManager.AppSettings["test"]);
             PrintAssemblies(AppDomain.CurrentDomain);
         }
 
