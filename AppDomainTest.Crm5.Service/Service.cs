@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppDomainTest.Crm5.Interfaces;
+using AppDomainTest.Common.Interfaces;
 
 namespace AppDomainTest.Crm5.Service
 {

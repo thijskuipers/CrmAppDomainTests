@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="microsoft.crm.sdk">
       <HintPath>..\Solution Items\CRM4\microsoft.crm.sdk.dll</HintPath>
     </Reference>
@@ -55,6 +58,10 @@
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppDomainTest.Common.Interfaces\AppDomainTest.Common.Interfaces.csproj">
+      <Project>{5cff9cc6-e385-4193-8cf9-8f60a8075780}</Project>
+      <Name>AppDomainTest.Common.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AppDomainTest.Crm4.Interfaces\AppDomainTest.Crm4.Interfaces.csproj">
       <Project>{ec9b3c60-eb51-46f2-8976-60599d0835a1}</Project>
       <Name>AppDomainTest.Crm4.Interfaces</Name>
@@ -62,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

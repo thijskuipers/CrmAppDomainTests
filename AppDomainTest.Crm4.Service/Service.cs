@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using AppDomainTest.Crm4.Interfaces;
+using AppDomainTest.Common.Interfaces;
 
 namespace AppDomainTest.Crm4.Service
 {

@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F8274B99-934D-410C-B8A9-C4953E2C9831}</ProjectGuid>
+    <ProjectGuid>{5CFF9CC6-E385-4193-8CF9-8F60A8075780}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppDomainTest.Crm5.Service</RootNamespace>
-    <AssemblyName>AppDomainTest.Crm5.Service</AssemblyName>
+    <RootNamespace>AppDomainTest.Common.Interfaces</RootNamespace>
+    <AssemblyName>AppDomainTest.Common.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,18 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="microsoft.xrm.client">
-      <HintPath>..\Solution Items\CRM2011\microsoft.xrm.client.dll</HintPath>
-    </Reference>
-    <Reference Include="microsoft.xrm.portal">
-      <HintPath>..\Solution Items\CRM2011\microsoft.xrm.portal.dll</HintPath>
-    </Reference>
-    <Reference Include="microsoft.xrm.sdk">
-      <HintPath>..\Solution Items\CRM2011\microsoft.xrm.sdk.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,34 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AppDomainTest.Common.Interfaces\AppDomainTest.Common.Interfaces.csproj">
-      <Project>{5cff9cc6-e385-4193-8cf9-8f60a8075780}</Project>
-      <Name>AppDomainTest.Common.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AppDomainTest.Crm5.Interfaces\AppDomainTest.Crm5.Interfaces.csproj">
-      <Project>{15718a8a-2fe5-418e-b9c8-3ca296cc2981}</Project>
-      <Name>AppDomainTest.Crm5.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>Robocopy "$(TargetDir)\" "$(SolutionDir)AppDomainTest.Application\bin\$(ConfigurationName)\Crm5"  *.dll *.pdb *.config
-if errorlevel 4 goto BuildEventFailed
-if errorlevel 0 goto end
-:BuildEventFailed echo FILECOPY for $(ProjectName) FAILED
-exit 1
-:end echo FILECOPY for $(ProjectName) COMPLETED OK
-exit 0</PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

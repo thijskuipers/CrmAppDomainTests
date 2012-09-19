@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Policy;
-using AppDomainTest.Crm4.Interfaces;
+using AppDomainTest.Common.Interfaces;
 
 namespace AppDomainTest.Application
 {
@@ -14,24 +14,34 @@ namespace AppDomainTest.Application
 
             Console.WriteLine("Main AppDomain: {0}", AppDomain.CurrentDomain.FriendlyName);
 
-            AppDomainSetup adSetup = new AppDomainSetup();
-            
-            PrintAssemblies(AppDomain.CurrentDomain);
-
-            adSetup.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "Crm4");
-            adSetup.ConfigurationFile = Path.Combine(adSetup.ApplicationBase, "AppDomainTest.Crm4.Service.dll.config");
-
-            AppDomain crm4AppDomain = AppDomain.CreateDomain("Crm4Service", null, adSetup);
-
-            Console.WriteLine();
-            PrintAssemblies(crm4AppDomain);
-
-            Console.WriteLine();
-            IService crm4Service = (IService)crm4AppDomain.CreateInstanceAndUnwrap("AppDomainTest.Crm4.Service", "AppDomainTest.Crm4.Service.Service");
-            crm4Service.Setup();
+            AppDomain crm4AppDomain = SetupCrmServiceAppDomain("Crm4", "AppDomainTest.Crm4.Service", "AppDomainTest.Crm4.Service.Service");
+            AppDomain crm5AppDomain = SetupCrmServiceAppDomain("Crm5", "AppDomainTest.Crm5.Service", "AppDomainTest.Crm5.Service.Service");
 
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Creates a new AppDomain using a ApplicationBase relative to the main application's ApplicationBase,
+        /// loading a 
+        /// </summary>
+        /// <param name="relativeAppBase"></param>
+        /// <param name="assemblyName"></param>
+        /// <param name="serviceTypeFullName"></param>
+        /// <returns>The created AppDomain.</returns>
+        private static AppDomain SetupCrmServiceAppDomain(string relativeAppBase, string assemblyName, string serviceTypeFullName)
+        {
+            AppDomainSetup adSetup = new AppDomainSetup();
+
+            adSetup.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, relativeAppBase);
+            adSetup.ConfigurationFile = Path.Combine(adSetup.ApplicationBase, string.Format("{0}.dll.config", assemblyName));
+
+            AppDomain crmAppDomain = AppDomain.CreateDomain(string.Format("{0} AppDomain", assemblyName), null, adSetup);
+
+            IService crmService = (IService)crmAppDomain.CreateInstanceAndUnwrap(assemblyName, serviceTypeFullName);
+            crmService.Setup();
+
+            return crmAppDomain;
         }
 
         private static void PrintAssemblies(AppDomain appDomain)
